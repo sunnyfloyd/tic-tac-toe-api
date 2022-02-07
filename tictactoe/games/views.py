@@ -36,6 +36,7 @@ class GameViewSet(
     def move(self, request, pk: Union[int, None] = None) -> Response:
         game = self.get_object()
         serializer = self.serializer_class(data=request.data)
+        serializer = self.get_serializer(data=request.data)
 
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -52,5 +53,5 @@ class GameViewSet(
     @action(detail=True, methods=["get"], serializer_class=MoveSerializer)
     def moves(self, request, pk: Union[int, None] = None) -> Response:
         queryset = self.get_object().moves.all()
-        serializer = self.serializer_class(queryset, many=True)
+        serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)

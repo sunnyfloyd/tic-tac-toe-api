@@ -41,6 +41,9 @@ class GameService:
         Returns:
             dict: dict providing information about action competion or errors that occured
         """
+        if game.status == "finished":
+            return {"error": "This game has already finished"}
+
         if game.is_user_in_game(user=user):
             return {"error": "You already joined this game"}
 

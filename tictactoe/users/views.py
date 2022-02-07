@@ -7,7 +7,6 @@ from .permissions import IsUserOrReadOnly
 from .serializers import CreateUserSerializer, UserSerializer, UserHighscoreSerializer
 
 
-
 class UserViewSet(
     mixins.RetrieveModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet
 ):
